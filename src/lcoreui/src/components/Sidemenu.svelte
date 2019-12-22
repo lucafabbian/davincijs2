@@ -15,7 +15,7 @@
   transition: all ease-out 0.18s;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 21px;
+  padding: 18px;
   box-sizing: border-box;
 }
 

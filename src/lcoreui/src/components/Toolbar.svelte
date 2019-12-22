@@ -36,6 +36,7 @@ export let light = false
 }
 
 :global(lc-toolbar > lc-icon){
+  cursor: pointer; 
   background-color: transparent;
   font-size: 22px !important;
   width: 40px;

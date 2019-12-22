@@ -7,7 +7,7 @@
 :global(lc-label) {
     display: block;
     box-sizing: border-box;
-    font-size: 16px;
+    font-size: 1em;
     font-weight: normal;
     margin-top: 10px;
     margin-bottom: 15px;
@@ -16,13 +16,13 @@
 :global(lc-label[bold=true]) {
   font-weight: 600;
   color: #505050;
-  font-size: 18px;
+  font-size: 1.5em;
 }
 
 :global(lc-label[header=true]) {
   font-weight: 800;
   color: #505050;
-  font-size: 25px;
+  font-size: 2em;
   padding-top: 15px;
   padding-bottom: 10px;
 }

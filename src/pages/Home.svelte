@@ -2,7 +2,7 @@
   // Imports
   import { push } from 'svelte-spa-router'
   import { SidemenuButton } from '../components/*.svelte'
-  import { Page, Toolbar, Label, Icon } from '../lcoreui/src/index.mjs'
+  import { Page, Toolbar, Button, Label, Icon } from '../lcoreui/src/index.mjs'
 
   let homeDropdown = false;
 </script>
@@ -13,6 +13,6 @@
   <Icon icon="md-settings" on:click={ () => push('/impostazioni') } />
 </Toolbar>
 <Page>
-
+  <Button label="hello"/>
 
 </Page>

@@ -25,14 +25,6 @@ const store = {
   }
 }
 
-/** Funzioni per il DaVinciApi */
-const $davinciApi = function(Vue){
-  const update = (key, value) => {
-    Vue.prototype.$store.dav = {
-      ...Vue.prototype.$store.dav,
-      [key]: value,
-    }
-  }
 
 
   // Controlla se l'api e' online
