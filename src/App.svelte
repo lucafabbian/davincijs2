@@ -1,6 +1,7 @@
 <script>
   import Router from 'svelte-spa-router'
   import { Home, Agenda, Orari, Comunicati,  Impostazioni, NotFound } from "./pages/*.svelte"
+
   import {App, Page, Toolbar, Tabbar, Sidemenu, Dropdown,
     Label, Icon, Fab, Card } from './lcoreui/src/index.mjs'
 
@@ -15,10 +16,7 @@
     '/impostazioni': Impostazioni,
     '*':  NotFound,
   }
-
-
-
-
+  
 </script>
 
 <App title="DaVinciJS2" color="red">
@@ -36,19 +34,3 @@
   <Router {routes}/>
 
 </App>
-
-
-<style>
-  :global(body, html) {
-    background-color: #fff;
-    margin: 0;
-    padding: 0;
-    --color-main: gold;
-  }
-
-  .page-container {
-    display: flex;
-    height: 100vh;
-    flex-direction: column;
-  }
-</style>
