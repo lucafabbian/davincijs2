@@ -12,8 +12,8 @@
   box-sizing: border-box;
   display: block;
   text-align: left;
+  margin: .3em 0;
   word-wrap: break-word;
-  margin-bottom: 10px;
 }
 </style>
 

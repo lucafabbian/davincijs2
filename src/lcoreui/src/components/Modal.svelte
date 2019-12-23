@@ -21,6 +21,7 @@
 }
 :global(lc-modal-content) {
   z-index: 1100;
+  -webkit-tap-highlight-color: transparent;
 }
 </style>
 

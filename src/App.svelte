@@ -23,7 +23,7 @@
   }
 </script>
 
-<App title="DaVinciJS2" color="red">
+<App title="DaVinciJS2" color="#9f1919">
   <Sidemenu bind:open={$sidemenu}>
     <List>
       <Button pseudo icon="md-home" label="Home" on:click={() => open('/')}/>

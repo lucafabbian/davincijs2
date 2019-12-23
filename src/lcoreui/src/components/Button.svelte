@@ -1,7 +1,4 @@
 <script>
-  import { createEventDispatcher } from 'svelte';
-  const dispatch = createEventDispatcher();
-
   import Icon from './Icon.svelte'
   import Label from './Label.svelte'
   export let icon = ""
@@ -9,7 +6,7 @@
   export let color = ""
   export let pseudo = false
 </script>
-<lc-button pseudo={pseudo} on:click={(e) => dispatch('click', e.detail)}>
+<lc-button pseudo={pseudo} on:click>
   {#if icon != ""}
   <Icon icon={icon}/>
   {/if}
@@ -23,6 +20,7 @@
   :global(lc-button) {
     cursor: pointer;
     display: inline-flex;
+    align-items: center;
     border: 0;
     box-sizing: border-box;
     padding: .6em 1em;
@@ -30,15 +28,23 @@
     border-radius: .2em;
     background: #0074d9;
     font-size: 110%;
+    -webkit-tap-highlight-color: #0000003b;
   }
 
   :global(lc-button > lc-label){
     margin: 0px;
+    flex-grow: 1;
   }
 
   :global(lc-button > lc-icon){
-    margin-right: 12px;
-    font-size: 1.15em !important;
+    font-size: 1.4em !important;
+  }
+
+  :global(lc-button > *){
+    padding-right: .7em;
+  }
+  :global(lc-button>*:last-child) {
+    padding-right: 0;
   }
 
   :global(lc-button:hover){

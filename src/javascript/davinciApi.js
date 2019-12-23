@@ -109,7 +109,3 @@ const store = {
   }
 
 }
-
-
-/** */
-export default {install(Vue){Vue.prototype.$davinciApi = new $davinciApi(Vue)}, store}

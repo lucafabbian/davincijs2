@@ -7,6 +7,7 @@ import Dropdown    from './components/Dropdown.svelte'
 
 
 import Card        from './components/Card.svelte'
+import Carousel    from './components/Carousel.svelte'
 import Button      from './components/Button.svelte'
 import Fab         from './components/Fab.svelte'
 import Input       from './components/Input.svelte'
@@ -19,6 +20,6 @@ import ActionList   from './components/Row.svelte'
 
 export {
   App, Page, Sidemenu, Toolbar, Tabbar, Dropdown,
-  Card, Button, Fab, Input, Label, Modal, Icon,
+  Card, Carousel, Button, Fab, Input, Label, Modal, Icon,
   List, ActionList
 }

@@ -29,6 +29,7 @@
   height: 100%;
   position: absolute;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent !important;
 }
 
 :global(lc-app .lc-appbar){

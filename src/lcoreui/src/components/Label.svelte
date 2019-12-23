@@ -9,14 +9,14 @@
     box-sizing: border-box;
     font-size: 1em;
     font-weight: normal;
-    margin-top: 10px;
-    margin-bottom: 15px;
+    margin-top: 0.4em;
+    margin-bottom: 0.6em;
 }
 
 :global(lc-label[bold=true]) {
-  font-weight: 600;
+  font-weight: 800;
   color: #505050;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 
 :global(lc-label[header=true]) {
@@ -27,7 +27,7 @@
   padding-bottom: 10px;
 }
 </style>
-<lc-label {header} {bold}>
+<lc-label {header} {bold} on:click>
   {text}
   <slot/>
 </lc-label>

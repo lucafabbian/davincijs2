@@ -10,6 +10,6 @@
   <Label text="Impostazioni"/>
 </Toolbar>
 <Page>
-
+  <Label bold> Work in progress!</Label>
 
 </Page>
