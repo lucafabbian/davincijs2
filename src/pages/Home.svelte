@@ -3,7 +3,7 @@
   import { push } from 'svelte-spa-router'
   import { SidemenuButton } from '../components/*.svelte'
   import { Page, Toolbar, Button, Card, Carousel, Label, Icon } from '../lcoreui/src/index.mjs'
-
+  import { internalNews } from '../javascript/davinci.js'
   let homeDropdown = false;
 </script>
 
@@ -16,10 +16,12 @@
   <Carousel>
     <div class="caption">Biologia con Curvatura Biomedica</div>
   </Carousel>
+  {#each $internalNews as news}
   <Card>
-    <Label bold>DaVinciJS2 v0.0.2</Label>
-    <Label>Clicca per visualizzare il changelog</Label>
+    <Label bold>{news.title}</Label>
+    <Label>{news.subtitle}</Label>
   </Card>
+  {/each}
 </Page>
 
 <style>

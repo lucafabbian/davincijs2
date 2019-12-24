@@ -2,10 +2,11 @@
   import Router from 'svelte-spa-router'
   import {push} from 'svelte-spa-router'
   import { Home, Agenda, Orari, Comunicati,  Impostazioni, NotFound } from "./pages/*.svelte"
-
   import {App, Button, Sidemenu, Label, Icon, List } from './lcoreui/src/index.mjs'
 
   import { sidemenu } from "./javascript/store.js"
+  import { internalNews } from "./javascript/davinci.js"
+  $: console.log($internalNews)
 
   // Struttura dell'app
   const routes = {

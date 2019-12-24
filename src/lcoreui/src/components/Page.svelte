@@ -3,18 +3,20 @@
   import {fade} from 'svelte/transition'
 
   export let id = ""
+  export let scrollTop = 0
   export let loading = false
   export let refreshable = false
-
   export let padding = '8px'
   $: style = `${padding ? `padding: ${padding}` : ''}`
 
+  $: tick().then( () => {if(component.scrollTop != scrollTop) component.scrollTop = scrollTop})
   // infiniteScroll, inspired by https://github.com/andrelmlins/svelte-infinite-scroll
   export let infiniteScroll = null
   let isLoadMore = false
   let component
   const onScroll = (e) => {
     const offset = e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop
+    scrollTop = component.scrollTop
     if (offset <= 100) {
       if (!isLoadMore) infiniteScroll()
       isLoadMore = true;
@@ -22,10 +24,10 @@
       isLoadMore = false;
     }
   }
-  onMount( () => { if(infiniteScroll){
+  onMount( () => {
     component.addEventListener("scroll", onScroll);
     component.addEventListener("resize", onScroll);
-  }})
+  })
   onDestroy( () => {
     component.removeEventListener("scroll", onScroll);
     component.removeEventListener("resize", onScroll);
