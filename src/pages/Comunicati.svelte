@@ -1,9 +1,9 @@
 <script>
   // Imports
   import {push} from 'svelte-spa-router'
-  import { SidemenuButton } from '../components/*.svelte'
+  import {SidemenuButton} from '../components/*.svelte'
   import {Page, Toolbar, Label, List, Button, Icon } from '../lcoreui/src/index.mjs'
-  import {comunicatiGenitori} from '../javascript/davinci.js'
+  import {baseURL, comunicatiGenitori} from '../javascript/davinci.js'
 
   export let params = {} // Parametri url, {category: "genitori", number: "id comunicato"}
   let scrollTop = 0 // Bind scroll, così che aprendo e chiudendo un comunicato non torna all'inizio
@@ -50,7 +50,7 @@
   {/if}
 </Toolbar>
 {#if params.number}
-<iframe src="./static/pdfviewer/web/viewer.html?file=https://davapi.antonionapolitano.eu/sitoLiceo/images/comunicati/comunicati-genitori/4-Prove_integrative.pdf"></iframe>
+<iframe src={`./static/pdfviewer/web/viewer.html?file=${baseURL}sitoLiceo/images/comunicati/comunicati-${params.category}/${params.number}`}></iframe>
 {:else}
 <Page id="comunicati" infiniteScroll={ () => comunicatiCaricati += 40} bind:scrollTop={scrollTop}>
   <List>

@@ -20,7 +20,8 @@ const api = axios.create({ baseURL })
 
 /** Api */
 export default {
-
+  baseURL,
+  
   // Controlla se l'api e' online
   isOnline: () => api.get('api/teapot').catch( (err) => err.response.status === 418 ),
 

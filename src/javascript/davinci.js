@@ -16,3 +16,5 @@ const fetchable = (key, empty, fetch) => {
 
 export const internalNews       = fetchable("dav-internal-news", [], davinciApi.fetchInternalNews)
 export const comunicatiGenitori = fetchable("dav-comunicati-genitori", [], () => davinciApi.fetchComunicati("genitori"))
+
+export const baseURL = davinciApi.baseURL

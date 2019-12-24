@@ -1,0 +1,21 @@
+{
+  "short_name": "DaVinciJs",
+  "name": "Da Vinci App Javascript client",
+  "icons": [
+    {
+      "src": "/davincijs/dist/static/icons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/davincijs/dist/static/icons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#ffffff",
+  "background_color": "#ffffff",
+  "start_url": "/davincijs/dist/index.html",
+  "display": "standalone",
+  "orientation": "portrait"
+}
