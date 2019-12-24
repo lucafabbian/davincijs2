@@ -21,7 +21,7 @@ const api = axios.create({ baseURL })
 /** Api */
 export default {
   baseURL,
-  
+
   // Controlla se l'api e' online
   isOnline: () => api.get('api/teapot').catch( (err) => err.response.status === 418 ),
 
@@ -46,7 +46,7 @@ export default {
   fetchAgenda: (filter)  => api.post('api/agenda', filter).then(r => r.data),
 
   /** Restituisce la lista delle classi */
-  fetchClassi: () =>  api.get ('api/classi').then(r => r.data),
+  fetchClassi: () =>  api.get ('api/classi').then(r => r.data.sort()),
 
   /** Restituisce una lista ordinata dei nomi dei docenti */
   fetchDocenti: () =>  api.get('api/docenti').then(

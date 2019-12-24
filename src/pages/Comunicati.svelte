@@ -3,14 +3,19 @@
   import {push} from 'svelte-spa-router'
   import {SidemenuButton} from '../components/*.svelte'
   import {Page, Toolbar, Label, List, Button, Icon } from '../lcoreui/src/index.mjs'
-  import {baseURL, comunicatiGenitori} from '../javascript/davinci.js'
+  import {baseURL, serializeComunicato, comunicatiStudenti, comunicatiGenitori, comunicatiDocenti} from '../javascript/davinci.js'
 
   export let params = {} // Parametri url, {category: "genitori", number: "id comunicato"}
   let scrollTop = 0 // Bind scroll, così che aprendo e chiudendo un comunicato non torna all'inizio
 
   // Anziché caricare tutti i comunicati assieme, parte con 20 e poi aggiunge gli altri man mano
   let comunicatiCaricati = 20
-  $: comunicati = $comunicatiGenitori.slice(0, comunicatiCaricati)
+  let onlyPref = false
+  $: comunicati = ({
+    "studenti" : $comunicatiStudenti,
+    "genitori" : $comunicatiGenitori,
+    "docenti"  : $comunicatiDocenti,
+  })[params.category].filter(comunicato => !onlyPref || preferiti.includes(serializeComunicato(comunicato))).slice(0, comunicatiCaricati)
 
   // Gestisce il click sull'icona refresh
   let isRefreshing = false
@@ -34,8 +39,13 @@
   const clickDownload = comunicato => downloadFile(comunicato.url)
   const clickShare    = comunicato => window.open(`https://wa.me/?text=${comunicato.url}`)
 
-  const clickPreferiti = (index) => {
-    comunicatiTotali[index] = !comunicatiTotali[index]
+  let preferiti = JSON.parse(localStorage.getItem(`comunicati-preferiti-${params.category}`) || "[]")
+  $: localStorage.setItem(`comunicati-preferiti-${params.category}`, JSON.stringify(preferiti))
+  const clickPreferiti = (comunicato) => {
+    const serialized = serializeComunicato(comunicato)
+    preferiti = preferiti.includes(serialized)
+      ? preferiti.filter( elem => elem !== serialized)
+      : [...preferiti, serialized]
   }
 </script>
 
@@ -46,7 +56,7 @@
   <Icon icon="md-close" on:click={() => push(`/comunicati/${params.category}`)}/>
   {:else}
   <Icon icon="md-refresh" spin={isRefreshing} on:click={refresh}/>
-  <Icon icon="md-star"/>
+  <Icon icon="md-star" on:click={ () => onlyPref = !onlyPref }/>
   {/if}
 </Toolbar>
 {#if params.number}
@@ -62,9 +72,9 @@
     <Icon icon="md-share" size="1.5em"
     on:click={ (e) => (e.stopPropagation(), clickShare(comunicato)) }/>
     <Icon size="1.7em"
-    icon={comunicato ? "md-star":"md-star-border" }
-    color={comunicato ? "#daa900" : ""}
-    on:click={ (e) => (e.stopPropagation(), clickPreferiti(index)) }/>
+    icon={preferiti.includes(serializeComunicato(comunicato)) ? "md-star":"md-star-border" }
+    color={preferiti.includes(serializeComunicato(comunicato)) ? "#daa900" : ""}
+    on:click={ (e) => (e.stopPropagation(), clickPreferiti(comunicato)) }/>
   </Button>
   {/each}
   </List>

@@ -1,7 +1,7 @@
 <script>
   import Router from 'svelte-spa-router'
   import {push} from 'svelte-spa-router'
-  import { Home, Agenda, Orari, Comunicati,  Impostazioni, NotFound } from "./pages/*.svelte"
+  import {Home, Agenda, Orari, Comunicati,  Impostazioni, NotFound } from "./pages/*.svelte"
   import {App, Button, Sidemenu, Label, Icon, List } from './lcoreui/src/index.mjs'
 
   import { sidemenu } from "./javascript/store.js"
@@ -12,7 +12,7 @@
   const routes = {
     '/': Home,
     '/agenda': Agenda,
-    '/orari/:category?': Orari,
+    '/orari/:category/:orario?': Orari,
     '/comunicati/:category/:number?': Comunicati,
     '/impostazioni': Impostazioni,
     '*':  NotFound,
@@ -29,7 +29,7 @@
     <List>
       <Button pseudo icon="md-home" label="Home" on:click={() => open('/')}/>
       <Button pseudo icon="md-calendar" label="Agenda" on:click={() => open('/agenda')}/>
-      <Button pseudo icon="md-time" label="Orari" on:click={() => open('/orari')}/>
+      <Button pseudo icon="md-time" label="Orari" on:click={() => open('/orari/personale')}/>
       <Label header>Comunicati</Label>
       <Button pseudo icon="md-graduation-cap" label="Studenti" on:click={() => open('/comunicati/studenti')}/>
       <Button pseudo icon="md-accounts" label="Genitori" on:click={() => open('/comunicati/genitori')}/>
