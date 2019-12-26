@@ -4,7 +4,7 @@
 </script>
 
 <lc-carousel>
-  <img src="https://davapi.antonionapolitano.eu//sitoLiceo/images/slideshow/CurvaturaBiomedica.jpg">
+  <img alt="preview" src="https://davapi.antonionapolitano.eu//sitoLiceo/images/slideshow/CurvaturaBiomedica.jpg">
   <div>
     <slot/>
   </div>

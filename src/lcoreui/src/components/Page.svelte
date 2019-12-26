@@ -12,15 +12,11 @@
     + (padding ? `padding: ${padding};` : '')
 
   // infiniteScroll, inspired by https://github.com/andrelmlins/svelte-infinite-scroll
-  export let scrollTop = 0
-  $: tick().then( () => {if(component.scrollTop != scrollTop) component.scrollTop = scrollTop})
-
   export let infiniteScroll = null
   let isLoadMore = false
   let component
   const onScroll = (e) => {
     const offset = e.target.scrollHeight - e.target.clientHeight - e.target.scrollTop
-    scrollTop = component.scrollTop
     if (offset <= 100) {
       if (!isLoadMore) infiniteScroll()
       isLoadMore = true;
@@ -29,8 +25,10 @@
     }
   }
   onMount( () => {
-    component.addEventListener("scroll", onScroll);
-    component.addEventListener("resize", onScroll);
+    if(infiniteScroll){
+      component.addEventListener("scroll", onScroll);
+      component.addEventListener("resize", onScroll);
+    }
   })
   onDestroy( () => {
     component.removeEventListener("scroll", onScroll);

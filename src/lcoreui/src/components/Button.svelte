@@ -19,6 +19,7 @@
 
 <style>
   :global(lc-button) {
+    max-width: 100vw;
     cursor: pointer;
     display: inline-flex;
     align-items: center;
@@ -35,6 +36,8 @@
   :global(lc-button > lc-label){
     margin: 0px;
     flex-grow: 1;
+    word-break: break-word;
+    text-overflow:clip;
   }
 
   :global(lc-button > lc-icon){

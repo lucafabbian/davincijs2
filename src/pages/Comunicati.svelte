@@ -11,7 +11,6 @@
 
   // Anziché caricare tutti i comunicati assieme, parte con 20 e poi aggiunge gli altri man mano
   let comunicatiCaricati = 20
-  let loadMore = 250
   let onlyPref = false // Se true mostra solo i preferiti
   $: comunicati = ({
     "studenti" : $comunicatiStudenti,
@@ -20,7 +19,7 @@
   })[params.category]
     // Se onlyPref == true, mostra solo i preferiti
     .filter(comunicato => !onlyPref || preferiti.includes(serializeComunicato(comunicato)))
-    .slice(0, Math.min(comunicatiCaricati, loadMore)) // Carica solo alcuni comunicati
+    .slice(0, comunicatiCaricati) // Carica solo alcuni comunicati
 
   // Gestisce il click sull'icona refresh
   let isRefreshing = false
@@ -84,11 +83,11 @@
   {/if}
 </Toolbar>
 {#if params.comunicato}
-<lc-page>
+<lc-page style="z-index:1">
   <iframe title="pdfviewer" src={`./static/pdfviewer/web/viewer.html?file=${baseURL}sitoLiceo/images/comunicati/comunicati-${params.category}/${params.comunicato}`}/>
 </lc-page>
-{:else}
-<Page id="comunicati" infiniteScroll={ () => comunicatiCaricati += 40} bind:scrollTop={scrollTop}>
+{/if}
+<Page id="comunicati" infiniteScroll={ () => comunicatiCaricati += 40}>
   <List>
     {#each comunicati as comunicato, index}
     <Button pseudo on:click={ () => openPdf(comunicato)}>
@@ -105,7 +104,6 @@
     {/each}
   </List>
 </Page>
-{/if}
 
 
 <style>

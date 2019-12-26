@@ -18,7 +18,7 @@
   </Carousel>
   {#each $internalNews as news}
   <Card style="display: flex; align-items: center; margin-top: 16px;">
-    <img style="width: 20%; padding: 14px;" src={news.preview}/>
+    <img alt={`Preview della notizia${news.title}`} style="width: 20%; padding: 14px;" src={news.preview}/>
     <div style="flex: 1">
       <Label bold>{news.title}</Label>
       <Label>{news.subtitle}</Label>
