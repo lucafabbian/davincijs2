@@ -5,15 +5,13 @@
   import {App, Button, Sidemenu, Label, Icon, List } from './lcoreui/src/index.mjs'
 
   import { sidemenu } from "./javascript/store.js"
-  import { internalNews } from "./javascript/davinci.js"
-  $: console.log($internalNews)
 
   // Struttura dell'app
   const routes = {
     '/': Home,
     '/agenda': Agenda,
     '/orari/:category/:orario?': Orari,
-    '/comunicati/:category/:number?': Comunicati,
+    '/comunicati/:category/:comunicato?': Comunicati,
     '/impostazioni': Impostazioni,
     '*':  NotFound,
   }
@@ -22,11 +20,15 @@
     push(href)
     sidemenu.set(false)
   }
+
+  let width
 </script>
+<svelte:window bind:innerWidth={width}/>
 
 <App title="DaVinciJS2" color="#9f1919">
-  <Sidemenu bind:open={$sidemenu}>
+  <Sidemenu bind:open={$sidemenu} expand={width > 900 }>
     <List>
+      <img alt="logo-davincijs" src="./static/img/logo-toolbar.svg"/>
       <Button pseudo icon="md-home" label="Home" on:click={() => open('/')}/>
       <Button pseudo icon="md-calendar" label="Agenda" on:click={() => open('/agenda')}/>
       <Button pseudo icon="md-time" label="Orari" on:click={() => open('/orari/personale')}/>

@@ -22,9 +22,20 @@
   overflow: hidden;
 }
 
+:global(select){
+  padding: 0 1.6em 0 .4em;
+  margin: 0 0.5em;
+  box-sizing: border-box;
+  border: 0;
+  border-radius: 2px;
+  background-color: transparent;
+}
+
 :global(lc-app){
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: auto 100fr;
+  grid-template-rows: auto auto auto auto auto 100fr auto auto auto auto auto;
+  grid-auto-flow: column dense;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -33,6 +44,8 @@
 }
 
 :global(lc-app .lc-appbar){
+  grid-column-start: 1;
+  grid-column-end: 3;
   -webkit-app-region:drag;
   z-index: 1;
   left: 0;
@@ -56,6 +69,8 @@
   color: var(--lc-color-main);
 }
 :global(lc-app lc-page~.lc-appbar){
+  grid-row-start: 7;
+  grid-row-end: 7;
   box-shadow: 0 -4px 10px -4px rgba(0,0,0,.5);
 }
 </style>

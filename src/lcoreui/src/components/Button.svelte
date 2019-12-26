@@ -1,18 +1,19 @@
 <script>
   import Icon from './Icon.svelte'
   import Label from './Label.svelte'
-  export let icon = ""
-  export let label = ""
-  export let color = ""
+  export let icon = ''
   export let pseudo = false
+
+  export let label = ''
+  export let color = ''
+  export let style = ''
+  $: computedStyle = (style? style + ';': '')
+    + (color ? `background-color:${color};` : '')
+
 </script>
-<lc-button pseudo={pseudo} on:click>
-  {#if icon != ""}
-  <Icon icon={icon}/>
-  {/if}
-  {#if label != ""}
-  <Label>{label}</Label>
-  {/if}
+<lc-button pseudo={pseudo} style={computedStyle} on:click>
+  {#if icon} <Icon icon={icon}/> {/if}
+  {#if label}<Label>{label}</Label> {/if}
   <slot/>
 </lc-button>
 

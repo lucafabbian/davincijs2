@@ -1,7 +1,9 @@
 <script>
 
   export let padding = '8px'
-  $: style = `${padding ? `padding: ${padding}` : ''}`
+  export let style = ''
+  $: computedStyle = (style ? style + ';' : '')
+    + (padding ? `padding: ${padding}` : '')
 </script>
 <style>
 :global(lc-card) {
@@ -17,6 +19,6 @@
 }
 </style>
 
-<lc-card {style}>
+<lc-card style={computedStyle}>
   <slot/>
 </lc-card>

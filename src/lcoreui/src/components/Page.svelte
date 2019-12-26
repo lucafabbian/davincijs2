@@ -2,15 +2,19 @@
   import { onMount, onDestroy, tick } from 'svelte';
   import {fade} from 'svelte/transition'
 
-  export let id = ""
-  export let scrollTop = 0
-  export let loading = false
-  export let refreshable = false
-  export let padding = '8px'
-  $: style = `${padding ? `padding: ${padding}` : ''}`
+  export let id = ''
 
-  $: tick().then( () => {if(component.scrollTop != scrollTop) component.scrollTop = scrollTop})
+  //TODO export let refreshable = false
+  export let padding = '8px'
+  export let style = ''
+  export let maxWidth = ''
+  $: computedStyle = (style ? style + ';' : '')
+    + (padding ? `padding: ${padding};` : '')
+
   // infiniteScroll, inspired by https://github.com/andrelmlins/svelte-infinite-scroll
+  export let scrollTop = 0
+  $: tick().then( () => {if(component.scrollTop != scrollTop) component.scrollTop = scrollTop})
+
   export let infiniteScroll = null
   let isLoadMore = false
   let component
@@ -36,13 +40,25 @@
 </script>
 <style>
   :global(lc-page){
+    grid-row-start: 6;
+    grid-row-end: 6;
+
+    grid-column-start: 2;
+    grid-column-end:   2;
+    display: flex;
     flex: 1;
     background-color: var(--lc-color-background);
     overflow-y: overlay;
     overflow-x: hidden;
+    justify-content: center;
+  }
+  :global(lc-page > lc-page-content){
+    flex:1;
   }
 </style>
 
-<lc-page bind:this={component} in:fade={{duration: 500}} {id} {style}>
-  <slot/>
+<lc-page bind:this={component} in:fade={{duration: 500}} {id} style={computedStyle}>
+  <lc-page-content style={maxWidth ? `max-width:${maxWidth};` : ''}>
+    <slot/>
+  </lc-page-content>
 </lc-page>

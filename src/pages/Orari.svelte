@@ -51,7 +51,7 @@
   </select>
   {/if}
 </Toolbar>
-<Page>
+<Page maxWidth='650px'>
   <Orario data={orario}/>
 </Page>
 
@@ -60,3 +60,20 @@
   {id: 'classi', label: 'Classi'},
   {id: 'docenti', label: 'Docenti'},
 ]} />
+
+<style>
+:global(lc-toolbar select){
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='24' viewBox='0 0 24 24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/><path d='M0 0h24v24H0z' fill='none'/></svg>");
+  background-repeat: no-repeat;
+  background-position-x: 100%;
+  background-position-y: calc(50% - 2px);
+  color: white;
+}
+
+:global(lc-toolbar select option){
+  background-color: #9f1919;
+}
+</style>
