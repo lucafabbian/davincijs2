@@ -20,6 +20,8 @@ export const comunicatiGenitori = fetchable("dav-comunicati-genitori", "[]", () 
 export const comunicatiDocenti  = fetchable("dav-comunicati-docenti" , "[]", () => davinciApi.fetchComunicati("docenti"))
 export const classi             = fetchable("dav-classi" , "[]", () => davinciApi.fetchClassi())
 export const docenti            = fetchable("dav-docenti" , "[]", () => davinciApi.fetchDocenti())
+export const slideshowSito      = fetchable("dav-slideshow-sito", "[]", () => davinciApi.fetchSlideshowSito())
+
 
 export const baseURL = davinciApi.baseURL
 export const serializeComunicato = davinciApi.serializeComunicato

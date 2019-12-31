@@ -84,7 +84,7 @@
 </Toolbar>
 {#if params.comunicato}
 <lc-page style="z-index:1">
-  <iframe title="pdfviewer" src={`./static/pdfviewer/web/viewer.html?file=${baseURL}sitoLiceo/images/comunicati/comunicati-${params.category}/${params.comunicato}`}/>
+  <iframe title="pdfviewer" src={`./static/pdfviewer/web/viewer.html?file=${baseURL}/sitoLiceo/images/comunicati/comunicati-${params.category}/${params.comunicato}`}/>
 </lc-page>
 {/if}
 <Page id="comunicati" infiniteScroll={ () => comunicatiCaricati += 40}>

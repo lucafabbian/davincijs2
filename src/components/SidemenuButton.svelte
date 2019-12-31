@@ -5,6 +5,6 @@
 </script>
 
 <svelte:window bind:innerWidth={width}/>
-{#if width <= 900}
+{#if width <= 1250}
 <Icon icon="md-menu" on:click={() => sidemenu.update( (value) => !value )}/>
 {/if}

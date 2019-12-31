@@ -26,7 +26,7 @@
 <svelte:window bind:innerWidth={width}/>
 
 <App title="DaVinciJS2" color="#9f1919">
-  <Sidemenu bind:open={$sidemenu} expand={width > 900 }>
+  <Sidemenu bind:open={$sidemenu} expand={width > 1250 }>
     <List>
       <img alt="logo-davincijs" src="./static/img/logo-toolbar.svg"/>
       <Button pseudo icon="md-home" label="Home" on:click={() => open('/')}/>

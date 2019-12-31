@@ -1,10 +1,23 @@
 <script>
+  import {tick} from 'svelte'
+  export let alt = ''
+  export let img = ''
+  export let length
+  export let index = 0
+  export let loaded = false
 
-
+  const delay = t => new Promise(resolve => setTimeout(resolve, t));
+  setInterval( () => { index++ }, 5000)
+  $: {
+    loaded = false
+    while(index < 0)       index += length
+    while(index >= length) index -= length
+    delay(50).then(tick).then( () => loaded = true )
+  }
 </script>
 
 <lc-carousel>
-  <img alt="preview" src="https://davapi.antonionapolitano.eu//sitoLiceo/images/slideshow/CurvaturaBiomedica.jpg">
+  <img {alt} src={img}/>
   <div>
     <slot/>
   </div>

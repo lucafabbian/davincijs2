@@ -1,10 +1,14 @@
 <script>
   // Imports
   import { push } from 'svelte-spa-router'
+  import { fade } from 'svelte/transition';
   import { SidemenuButton } from '../components/*.svelte'
   import { Page, Toolbar, Button, Card, Carousel, Label, Icon } from '../lcoreui/src/index.mjs'
-  import { internalNews } from '../javascript/davinci.js'
+  import { internalNews, slideshowSito } from '../javascript/davinci.js'
   let homeDropdown = false
+  let index = 0
+  let loaded = false
+  $: console.log($slideshowSito[0])
 </script>
 
 <Toolbar>
@@ -13,8 +17,17 @@
   <Icon icon="md-settings" on:click={ () => push('/impostazioni') } />
 </Toolbar>
 <Page maxWidth='570px'>
-  <Carousel>
-    <div class="caption">Biologia con Curvatura Biomedica</div>
+  <Carousel
+  bind:index={index}
+  bind:loaded={loaded}
+  length={$slideshowSito.length}
+  alt={$slideshowSito[index].title}
+  img={$slideshowSito[index].img}>
+    {#if loaded}
+    <div class="caption" on:click={window.open($slideshowSito[index].url)}>
+      {$slideshowSito[index].title || 'Loading...'}
+    </div>
+    {/if}
   </Carousel>
   {#each $internalNews as news}
   <Card style="display: flex; align-items: center; margin-top: 16px;">
