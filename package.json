@@ -18,7 +18,7 @@
     "svelte-spa-router": "^2.0.0"
   },
   "dependencies": {
-    "axios": "^0.19.0",
+    "axios": "^0.21.1",
     "rollup-plugin-serve": "^1.0.1",
     "svelte-infinite-scroll": "^0.1.0"
   }
